@@ -14,7 +14,7 @@ class FlashChat extends StatelessWidget {
       minTextAdapt: true,
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        title: 'Chat App',
+        title: 'Flash Chat',
         onGenerateRoute: appRouter.generaterRoute,
         initialRoute:  Routes.signUp,
         theme: ThemeData(
