@@ -1,4 +1,7 @@
+import 'package:flash_chat/features/auth/logic/cubit/auth_cubit.dart';
+import 'package:flash_chat/features/auth/ui/widgets/signup_bloc_listner.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../core/routing/routes.dart';
 import '../../../../core/theme/color_manager.dart';
@@ -76,6 +79,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   },
                   child: Text('Login', style: TextStyles.font14W600),
                 ),
+                SignupBlocListner(),
               ],
             ),
           ),
@@ -87,6 +91,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
   void validateThenSubmit() {
     if (formKey.currentState?.validate() ?? false) {
       FocusScope.of(context).unfocus();
+      context.read<AuthCubit>().signUp(
+        name: nameController.text.trim(),
+        email: emailController.text.trim(),
+        password: passwordController.text.trim(),
+      );
     }
   }
 }

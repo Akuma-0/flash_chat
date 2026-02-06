@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'core/routing/app_router.dart';
@@ -16,7 +17,9 @@ class FlashChat extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'Flash Chat',
         onGenerateRoute: appRouter.generaterRoute,
-        initialRoute:  Routes.signUp,
+        initialRoute: FirebaseAuth.instance.currentUser == null
+            ? Routes.signUp
+            : Routes.home,
         theme: ThemeData(
           scaffoldBackgroundColor: ColorManager.white,
           appBarTheme: AppBarTheme(

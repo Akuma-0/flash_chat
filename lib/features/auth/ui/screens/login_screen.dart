@@ -1,4 +1,7 @@
+import 'package:flash_chat/features/auth/logic/cubit/auth_cubit.dart';
+import 'package:flash_chat/features/auth/ui/widgets/login_bloc_listner.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../core/theme/color_manager.dart';
 import '../../../../core/theme/text_styles.dart';
@@ -62,6 +65,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     color: ColorManager.gray80,
                   ),
                 ),
+                LoginBlocListner(),
                 GestureDetector(
                   onTap: () {
                     Navigator.pop(context);
@@ -79,6 +83,10 @@ class _LoginScreenState extends State<LoginScreen> {
   void validateThenSubmit() {
     if (formKey.currentState?.validate() ?? false) {
       FocusScope.of(context).unfocus();
+      context.read<AuthCubit>().signIn(
+        email: emailController.text.trim(),
+        password: passwordController.text.trim(),
+      );
     }
   }
 }

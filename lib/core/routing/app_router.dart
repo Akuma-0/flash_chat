@@ -1,4 +1,7 @@
+import 'package:flash_chat/features/auth/logic/cubit/auth_cubit.dart';
+import 'package:flash_chat/features/home/ui/home_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../features/auth/ui/screens/login_screen.dart';
 import '../../features/auth/ui/screens/sign_up_screen.dart';
 import 'routes.dart';
@@ -27,9 +30,19 @@ class AppRouter {
       //     ),
       //   );
       case Routes.login:
-        return MaterialPageRoute(builder: (_) => const LoginScreen());
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider(
+            create: (context) => AuthCubit(),
+            child: const LoginScreen(),
+          ),
+        );
       case Routes.signUp:
-        return MaterialPageRoute(builder: (_) => const SignUpScreen());
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider(
+            create: (context) => AuthCubit(),
+            child: const SignUpScreen(),
+          ),
+        );
       default:
         return MaterialPageRoute(
           builder: (_) =>
