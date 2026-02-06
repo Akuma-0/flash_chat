@@ -1,0 +1,59 @@
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../../../../core/models/user_model.dart';
+import '../../../../core/theme/color_manager.dart';
+import '../../../../core/theme/text_styles.dart';
+
+class ProfileData extends StatelessWidget {
+  const ProfileData({super.key, required this.user});
+  final UserModel user;
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Column(
+        children: [
+          CircleAvatar(
+            radius: 60.r,
+            backgroundColor: ColorManager.grayF6,
+            child: CachedNetworkImage(
+              imageUrl: user.profilePictureUrl ,
+              placeholder: (_, _) =>
+                  Icon(Icons.person, color: ColorManager.black23, size: 80.sp),
+              errorWidget: (_, _, _) =>
+                  Icon(Icons.person, color: ColorManager.black23, size: 80.sp),
+            ),
+          ),
+          SizedBox(height: 26.h),
+          Text(user.name, style: TextStyles.font24W700),
+          SizedBox(height: 10.h),
+          Text(
+            user.email,
+            style: TextStyles.font14W400.copyWith(color: ColorManager.gray80),
+          ),
+          SizedBox(height: 100.h),
+          TextButton(
+            style: TextButton.styleFrom(
+              foregroundColor: Colors.red,
+              backgroundColor: ColorManager.black23,
+              padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 10.h),
+              minimumSize: Size(double.infinity, 50.h),
+            ),
+            onPressed: () {
+            //  context.read<ProfileCubit>().logout();
+            },
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(Icons.logout, size: 24.sp),
+                SizedBox(width: 8.w),
+                Text('Logout', style: TextStyles.font18W600),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
