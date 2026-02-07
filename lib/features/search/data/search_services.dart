@@ -8,16 +8,12 @@ class SearchServices {
 
   final FirebaseFirestore _db = FirebaseFirestore.instance;
   Future<List<UserModel>> searchUsers(String query) async {
-    final List<UserModel> res = await _db
+    final data = await _db
         .collection('users')
         .where('name', isGreaterThanOrEqualTo: query)
         .where('name', isLessThanOrEqualTo: '$query\uf8ff')
-        .get()
-        .then((snapshot) {
-          return snapshot.docs
-              .map((doc) => UserModel.fromMap(doc.data()))
-              .toList();
-        });
+        .get();
+    final res = data.docs.map((doc) => UserModel.fromMap(doc.data())).toList();
     return res;
   }
 }
