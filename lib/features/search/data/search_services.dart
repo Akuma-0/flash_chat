@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flash_chat/core/helpers/constants.dart';
 import '../../../core/models/user_model.dart';
 
 class SearchServices {
@@ -9,7 +10,7 @@ class SearchServices {
   final FirebaseFirestore _db = FirebaseFirestore.instance;
   Future<List<UserModel>> searchUsers(String query) async {
     final data = await _db
-        .collection('users')
+        .collection(FirebaseConstants.usersCollection)
         .where('name', isGreaterThanOrEqualTo: query)
         .where('name', isLessThanOrEqualTo: '$query\uf8ff')
         .get();

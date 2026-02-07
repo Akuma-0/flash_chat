@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flash_chat/core/helpers/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../core/models/conversation_model.dart';
@@ -23,7 +24,7 @@ class ConversationPage extends StatelessWidget {
         Expanded(
           child: StreamBuilder(
             stream: FirebaseFirestore.instance
-                .collection('conversations')
+                .collection(FirebaseConstants.conversationsCollection)
                 .where(
                   'participantIds',
                   arrayContains: FirebaseAuth.instance.currentUser!.uid,

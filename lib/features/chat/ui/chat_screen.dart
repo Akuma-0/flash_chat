@@ -38,9 +38,9 @@ class ChatScreen extends StatelessWidget {
       ),
       body: StreamBuilder(
         stream: FirebaseFirestore.instance
-            .collection('conversations')
+            .collection(FirebaseConstants.conversationsCollection)
             .doc(getChatId(currentUser.uid, reciver.uid))
-            .collection('messages')
+            .collection(FirebaseConstants.messagesCollection)
             .orderBy('timestamp', descending: true)
             .snapshots(),
         builder: (context, asyncSnapshot) {
