@@ -26,12 +26,24 @@ class UserTile extends StatelessWidget {
           child: CircleAvatar(
             radius: 30.r,
             backgroundColor: ColorManager.white,
-            child: CachedNetworkImage(
-              imageUrl: user.profilePictureUrl,
-              placeholder: (_, _) =>
-                  Icon(Icons.person, color: ColorManager.black23, size: 42.sp),
-              errorWidget: (_, _, _) =>
-                  Icon(Icons.person, color: ColorManager.black23, size: 42.sp),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(30.r),
+              child: CachedNetworkImage(
+                imageUrl: user.profilePictureUrl,
+                width: 60.w,
+                height: 60.h,
+                fit: BoxFit.cover,
+                placeholder: (_, _) => Icon(
+                  Icons.person,
+                  color: ColorManager.black23,
+                  size: 42.sp,
+                ),
+                errorWidget: (_, _, _) => Icon(
+                  Icons.person,
+                  color: ColorManager.black23,
+                  size: 42.sp,
+                ),
+              ),
             ),
           ),
         ),

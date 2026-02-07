@@ -17,12 +17,24 @@ class ProfileData extends StatelessWidget {
           CircleAvatar(
             radius: 60.r,
             backgroundColor: ColorManager.grayF6,
-            child: CachedNetworkImage(
-              imageUrl: user.profilePictureUrl ,
-              placeholder: (_, _) =>
-                  Icon(Icons.person, color: ColorManager.black23, size: 80.sp),
-              errorWidget: (_, _, _) =>
-                  Icon(Icons.person, color: ColorManager.black23, size: 80.sp),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(60.r),
+              child: CachedNetworkImage(
+                imageUrl: user.profilePictureUrl,
+                width: 120.w,
+                height: 120.h,
+                fit: BoxFit.cover,
+                placeholder: (_, _) => Icon(
+                  Icons.person,
+                  color: ColorManager.black23,
+                  size: 80.sp,
+                ),
+                errorWidget: (_, _, _) => Icon(
+                  Icons.person,
+                  color: ColorManager.black23,
+                  size: 80.sp,
+                ),
+              ),
             ),
           ),
           SizedBox(height: 26.h),
@@ -41,7 +53,7 @@ class ProfileData extends StatelessWidget {
               minimumSize: Size(double.infinity, 50.h),
             ),
             onPressed: () {
-            //  context.read<ProfileCubit>().logout();
+              //  context.read<ProfileCubit>().logout();
             },
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
