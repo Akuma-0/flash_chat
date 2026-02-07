@@ -1,5 +1,4 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flash_chat/core/helpers/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -48,7 +47,7 @@ class ConversationTile extends StatelessWidget {
                 imageUrl:
                     data
                         .users[data.participantIds.firstWhere(
-                          (id) => id != FirebaseAuth.instance.currentUser!.uid,
+                          (id) => id != currentUser.uid,
                         )]
                         ?.profilePictureUrl ??
                     '',
@@ -69,7 +68,7 @@ class ConversationTile extends StatelessWidget {
         title: Text(
           data
                   .users[data.participantIds.firstWhere(
-                    (id) => id != FirebaseAuth.instance.currentUser!.uid,
+                    (id) => id != currentUser.uid,
                   )]
                   ?.name ??
               'Unknown User',
