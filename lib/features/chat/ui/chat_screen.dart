@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flash_chat/core/helpers/constants.dart';
+import 'package:flash_chat/features/chat/ui/widgets/no_messages.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -45,20 +46,7 @@ class ChatScreen extends StatelessWidget {
             .snapshots(),
         builder: (context, snapshot) {
           return (snapshot.data?.docs.isEmpty ?? true)
-              ? Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(
-                        Icons.near_me_disabled_sharp,
-                        size: 80.sp,
-                        color: ColorManager.black23,
-                      ),
-                      SizedBox(height: 16.h),
-                      Text('No messages yet', style: TextStyles.font24W700),
-                    ],
-                  ),
-                )
+              ? NoMessages()
               : ListView.builder(
                   reverse: true,
                   padding: EdgeInsets.only(
