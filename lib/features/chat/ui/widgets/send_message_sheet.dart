@@ -31,6 +31,7 @@ class SendMessageSheet extends StatelessWidget {
               SizedBox(width: 12.w),
               Expanded(
                 child: TextField(
+                  enabled: state is! Sending,
                   controller: context.read<ChatCubit>().messageController,
                   style: TextStyles.font14W400,
                   cursorColor: ColorManager.black23,

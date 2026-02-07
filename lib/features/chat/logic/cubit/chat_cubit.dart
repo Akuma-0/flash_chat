@@ -11,7 +11,7 @@ class ChatCubit extends Cubit<ChatState> {
   final ChatService _chatServices = ChatService();
   final TextEditingController messageController = TextEditingController();
   Future<void> sendMessage({required UserModel reciever}) async {
-    if (messageController.text.trim().isEmpty) {
+    if (messageController.text.trim().isEmpty || state is Sending) {
       return;
     }
     emit(Sending());

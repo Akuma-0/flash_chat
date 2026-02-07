@@ -69,6 +69,7 @@ class ChatScreen extends StatelessWidget {
       ),
       bottomSheet: SendMessageSheet(
         onSendPressed: () {
+          FocusScope.of(context).unfocus();
           context.read<ChatCubit>().sendMessage(reciever: reciver);
         },
       ),
