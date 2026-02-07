@@ -43,8 +43,8 @@ class ChatScreen extends StatelessWidget {
             .collection(FirebaseConstants.messagesCollection)
             .orderBy('timestamp', descending: true)
             .snapshots(),
-        builder: (context, asyncSnapshot) {
-          return (asyncSnapshot.data?.docs.isEmpty ?? true)
+        builder: (context, snapshot) {
+          return (snapshot.data?.docs.isEmpty ?? true)
               ? Center(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -69,21 +69,19 @@ class ChatScreen extends StatelessWidget {
                   ),
                   itemBuilder: (context, index) => ChatBubble(
                     isSentByMe:
-                        asyncSnapshot.data!.docs[index]['senderId'] ==
+                        snapshot.data!.docs[index]['senderId'] ==
                         currentUser.uid,
                     message: MessageModel.fromJson(
-                      asyncSnapshot.data!.docs[index].data(),
+                      snapshot.data!.docs[index].data(),
                     ),
                   ),
-                  itemCount: asyncSnapshot.data!.docs.length,
+                  itemCount: snapshot.data!.docs.length,
                 );
         },
       ),
       bottomSheet: SendMessageSheet(
         onSendPressed: () {
-          context.read<ChatCubit>().sendMessage(
-            reciever: reciver,
-          );
+          context.read<ChatCubit>().sendMessage(reciever: reciver);
         },
       ),
     );
