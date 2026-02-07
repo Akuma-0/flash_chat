@@ -1,5 +1,4 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flash_chat/core/routing/routes.dart';
 import 'package:flash_chat/features/home/data/home_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -23,10 +22,7 @@ class HomeCubit extends Cubit<HomeState> {
     }
   }
 
-  Future<void> signOut(BuildContext context) async {
+  Future<void> signOut() async {
     await _auth.signOut();
-    Navigator.of(
-      context,
-    ).pushNamedAndRemoveUntil(Routes.signUp, (Route<dynamic> route) => false);
   }
 }

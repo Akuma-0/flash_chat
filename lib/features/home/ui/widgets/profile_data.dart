@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../core/models/user_model.dart';
+import '../../../../core/routing/routes.dart';
 import '../../../../core/theme/color_manager.dart';
 import '../../../../core/theme/text_styles.dart';
 
@@ -55,7 +56,11 @@ class ProfileData extends StatelessWidget {
               minimumSize: Size(double.infinity, 50.h),
             ),
             onPressed: () {
-              context.read<HomeCubit>().signOut(context);
+              context.read<HomeCubit>().signOut();
+              Navigator.of(context).pushNamedAndRemoveUntil(
+                Routes.signUp,
+                (Route<dynamic> route) => false,
+              );
             },
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
