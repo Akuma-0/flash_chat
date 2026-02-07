@@ -9,13 +9,18 @@ class HomeService {
   factory HomeService() => instance;
   final db = FirebaseFirestore.instance;
   final auth = FirebaseAuth.instance;
-  Future<void> getUserData() async {
+  Future<UserModel> getUserData() async {
     final user = auth.currentUser;
     if (user != null) {
-      final data = await db.collection(FirebaseConstants.usersCollection).doc(user.uid).get();
+      final data = await db
+          .collection(FirebaseConstants.usersCollection)
+          .doc(user.uid)
+          .get();
       if (data.exists) {
         currentUser = UserModel.fromMap(data.data()!);
+        return currentUser;
       }
     }
+    throw Exception('User not found');
   }
 }

@@ -1,5 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flash_chat/features/home/logic/cubit/home_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../core/models/user_model.dart';
 import '../../../../core/theme/color_manager.dart';
@@ -53,7 +55,7 @@ class ProfileData extends StatelessWidget {
               minimumSize: Size(double.infinity, 50.h),
             ),
             onPressed: () {
-              //  context.read<ProfileCubit>().logout();
+              context.read<HomeCubit>().signOut(context);
             },
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,

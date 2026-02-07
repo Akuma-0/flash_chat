@@ -18,7 +18,7 @@ class AppRouter {
       case Routes.home:
         return MaterialPageRoute(
           builder: (_) => BlocProvider(
-            create: (context) => HomeCubit(),
+            create: (context) => HomeCubit()..getUserData(),
             child: const HomeScreen(),
           ),
         );
@@ -33,9 +33,7 @@ class AppRouter {
         return MaterialPageRoute(
           builder: (_) => BlocProvider(
             create: (context) => ChatCubit(),
-            child: ChatScreen(
-              reciver: settings.arguments as UserModel,
-            ),
+            child: ChatScreen(reciver: settings.arguments as UserModel),
           ),
         );
       case Routes.login:

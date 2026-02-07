@@ -54,11 +54,7 @@ class UserTile extends StatelessWidget {
           overflow: TextOverflow.ellipsis,
         ),
         onTap: () {
-          Navigator.pushNamed(
-            context,
-            Routes.chat,
-            arguments: {'sender': '', 'reciver': user},
-          );
+          Navigator.pushNamed(context, Routes.chat, arguments: user);
         },
       ),
     );

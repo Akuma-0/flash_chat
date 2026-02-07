@@ -1,3 +1,4 @@
+import 'package:flash_chat/core/helpers/constants.dart';
 import 'package:flash_chat/core/models/user_model.dart';
 import 'package:flash_chat/features/home/ui/widgets/profile_data.dart';
 import 'package:flutter/material.dart';
@@ -17,10 +18,10 @@ class ProfilePage extends StatelessWidget {
         SizedBox(height: 66.h),
         ProfileData(
           user: UserModel(
-            name: 'name',
-            email: 'email',
-            uid: 'uid',
-            profilePictureUrl: 'profilePictureUrl',
+            name: currentUser.name,
+            email: currentUser.email,
+            uid: currentUser.uid,
+            profilePictureUrl: currentUser.profilePictureUrl,
           ),
         ),
       ],
