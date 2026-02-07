@@ -1,7 +1,7 @@
 import 'dart:developer';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flash_chat/core/helpers/constants.dart';
 import 'package:flash_chat/core/models/user_model.dart';
 
 class AuthService {
@@ -25,7 +25,10 @@ class AuthService {
       profilePictureUrl: '',
     ).toMap();
     try {
-      await firestore.collection("users").doc(credential.user!.uid).set(user);
+      await firestore
+          .collection(FirebaseConstants.usersCollection)
+          .doc(credential.user!.uid)
+          .set(user);
       log('User profile created');
     } catch (e) {
       credential.user!.delete();
